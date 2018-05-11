@@ -152,7 +152,10 @@
 - (void)toggleFloatLabel:(UIFloatLabelAnimationType)animationType
 {
     // Placeholder
-    self.placeholder = (animationType == UIFloatLabelAnimationTypeShow) ? @"" : [_floatLabel text];
+    if (!self.attributedPlaceholder) {
+        // This will preserve attributedPlaceholder
+        self.placeholder = (animationType == UIFloatLabelAnimationTypeShow) ? @"" : [_floatLabel text];
+    }
     
     // Reference textAlignment to reset origin of textField and floatLabel
     _floatLabel.textAlignment = self.textAlignment = [self textAlignment];
